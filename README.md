@@ -1,2 +1,2 @@
 # Alakhdeepsingh-To-Do-List
-To-Do-List using Javascript
+To-Do-List using JavaScript
