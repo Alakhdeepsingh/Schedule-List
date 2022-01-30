@@ -12,8 +12,15 @@ const alertDiv=document.querySelector("#message")
 //create an empty items list : basically an empty array
 let todoItems=[];
 const alertMessage=function(message,className){
-    console.log(message)
-}
+   alertDiv.innerHTML=message;
+   alertDiv .classList.add(className,"show");
+   alertDiv .classList.remove("hide");
+   setTimeout(() => {
+        alertDiv.classList.add("hide");
+        alertDiv.classList.remove("show");
+      }, 3000);
+      return;
+};
 
 
 // create empty item list
@@ -109,7 +116,7 @@ const items=document.querySelectorAll('.list-group-item');
             item.querySelector("[data-edit]").addEventListener('click',function(e){
                 e.preventDefault();
                 inputItem.value=itemData.name;
-                document.querySelector('#objIndex').value=todoItems.indexOf(itemData);
+                document.querySelector('#citem').value=todoItems.indexOf(itemData);
 
             });
 
@@ -122,6 +129,7 @@ const items=document.querySelectorAll('.list-group-item');
                    itemsList.removeChild(item);
                    removeItem(item);
                    setLocalStorage(todoItems);
+                   alertMessage("Item has been added.","alert-success")
                    return todoItems.filter((item)=> item!= itemData);
 
                }
@@ -167,6 +175,7 @@ const getList= function(todoItems){
                     );
 
               }
+            }
            
 //Object.addEventListner(event,handler,capturePhase);
 //event is a string indicating the type of event,handler is the function that should be called when the event occurs.
@@ -183,7 +192,7 @@ const getLocalStorage = function(){
         todoItems=JSON.parse(todoStorage);
         // Use the JavaScript function JSON.parse() to convert text into a JavaScript object
     }
-    console.log("items",todoItems);
+    // console.log("items",todoItems);
     getList(todoItems);
 
 };
@@ -208,17 +217,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const itemName=inputItem.value.trim();
         //line 5 inputItem value will come in itemName 
         if(itemName.length===0){
-            alert("Please Enter name.");
+            alert("Please Enter name.","alert-danger");
         }
         else{
 
-            const currentItemIndex = document.querySelectorinputItem.value
+            //const currentItemIndex = document.querySelector("#citem").value;
 
-            currentItemIndex=document.querySelector('"#objIndex').value;
+            const currentItemIndex=document.querySelector("#citem").value;
             if(currentItemIndex){
                 //update
                 updateItem(currentItemIndex,itemName);
-                document.querySelector('"#objIndex').value="";
+                document.querySelector("#citem").value="";
+                alertMessage("Item has been updated.","alert-success");
             }
             else{
                 const itemObj = {
@@ -229,6 +239,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     };
                     todoItems.push(itemObj);
                     setLocalStorage(todoItems);
+                    alertMessage("New item has been added.","alert-success");
                 }
                 getList(todoItems);
             }

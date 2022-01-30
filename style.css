@@ -13,3 +13,9 @@
 .list-group{
     font-size:5.5 rem;
 }
+.show{
+    display:black;
+}
+.hide{
+    display:none;
+}
