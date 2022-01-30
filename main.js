@@ -104,7 +104,7 @@ const items=document.querySelectorAll('.list-group-item');
                 const iconClass=currentItem.isDone  ? "bi-check-circle-fill" : "bi-check-circle";
 
                 //we are changing the child of first element 
-                this.firstElemetChild.classList.replace(currentClass,iconClass);
+                this.firstElementChild.classList.replace(currentClass,iconClass);
 
 
                 //so here we are replacing itemIndex by 1 element by currentItem 
@@ -116,7 +116,7 @@ const items=document.querySelectorAll('.list-group-item');
             item.querySelector("[data-edit]").addEventListener('click',function(e){
                 e.preventDefault();
                 inputItem.value=itemData.name;
-                document.querySelector('#citem').value=todoItems.indexOf(itemData);
+                document.querySelector("#citem").value=todoItems.indexOf(itemData);
 
             });
 
@@ -156,7 +156,7 @@ const getList= function(todoItems){
                 `<li class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="title" data-time="${item.addedAt}">${item.name}</span>
                     <span> 
-                        <a href="#" data-done> <i class="bi ${iconClass}green"></i></a>  
+                        <a href="#" data-done> <i class="bi ${iconClass} green"></i></a>  
                         <a href="#" data-edit><i class="bi bi-pencil-square blue"></i></a>
                         <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
                     </span>
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             //const currentItemIndex = document.querySelector("#citem").value;
 
-            const currentItemIndex=document.querySelector("#citem").value;
+            const currentItemIndex=document.querySelector("#citem");
             if(currentItemIndex){
                 //update
                 updateItem(currentItemIndex,itemName);
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 }
                 getList(todoItems);
             }
-            itemIndex.value="";
+            itemInput.value="";
             //pushing the values of itemObj in the empty array that we have created upward let todoItems=[];
           
             //calling the function, the value of todoItems will go in this function(todoItems) 
