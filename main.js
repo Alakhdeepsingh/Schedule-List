@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             //const currentItemIndex = document.querySelector("#citem").value;
 
-            const currentItemIndex=document.querySelector("#citem");
+            const currentItemIndex=document.querySelector("#citem").value;
             if(currentItemIndex){
                 //update
                 updateItem(currentItemIndex,itemName);
