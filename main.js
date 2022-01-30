@@ -5,27 +5,30 @@ const form= document.querySelector("#itemForm");
 const inputItem= document.querySelector("#itemInput");
 const itemsList=document.querySelector("#itemsList");
 const filters=document.querySelectorAll(".nav-items");
+const alertDiv=document.querySelector("#message")
 
 // The querySelectorAll() method returns all elements that matches a CSS selector(s).
 
 //create an empty items list : basically an empty array
 let todoItems=[];
-
+const alertMessage=function(message,className){
+    console.log(message)
+}
 
 
 // create empty item list
 
-const showAlert = function (message, msgClass) {
-  console.log("msg");
-  messageDiv.innerHTML = message;
-  messageDiv.classList.add(msgClass, "show");
-  messageDiv.classList.remove("hide");
-  setTimeout(() => {
-    messageDiv.classList.remove("show",msgClass);
-    messageDiv.classList.add("hide");
-  }, 3000);
-  return;
-};
+// const showAlert = function (message, msgClass) {
+//   console.log("msg");
+//   messageDiv.innerHTML = message;
+//   messageDiv.classList.add(msgClass, "show");
+//   messageDiv.classList.remove("hide");
+//   setTimeout(() => {
+//     messageDiv.classList.remove("show",msgClass);
+//     messageDiv.classList.add("hide");
+//   }, 3000);
+//   return;
+// };
 
 
 
@@ -69,7 +72,7 @@ const updateItem=function(currentItemIndex,value){
 
 
 //handle events on action buttons
-const handle=function(itemData){
+const handleItem=function(itemData){
 
 const items=document.querySelectorAll('.list-group-item');
     //we are selcting of this class .list-group-item using querySelectorAll
@@ -154,8 +157,17 @@ const getList= function(todoItems){
                   //handling event with this function
                   handleItem(item);
                 });
+            }
+                else {
+                    itemsList.insertAdjacentHTML(
+                      "beforeend",
+                      `<li class="list-group-item d-flex justify-content-between align-items-center">
+                        No record found.
+                      </li>`
+                    );
+
               }
-            };
+           
 //Object.addEventListner(event,handler,capturePhase);
 //event is a string indicating the type of event,handler is the function that should be called when the event occurs.
 //eg: btn.addEventListner("click",show,false);
@@ -224,7 +236,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             //pushing the values of itemObj in the empty array that we have created upward let todoItems=[];
           
             //calling the function, the value of todoItems will go in this function(todoItems) 
-        }
+        });
      
         // The trim() method removes whitespace from both sides of a string.
         // The trim() method does not change the original string.
@@ -243,8 +255,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
   });
 
-
-    });
     //we are retrieving data from the local storage
+    //load items
     getLocalStorage();
 });
