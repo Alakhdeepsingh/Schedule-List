@@ -124,12 +124,12 @@ const items=document.querySelectorAll('.list-group-item');
             //delete using x-circle red
             item.querySelector("[data-delete]").addEventListener('click',function(e){
                 e.preventDefault();
-               alert("hi");
+            //    alert("hi");
                if(confirm("Are you sure you want to remove this item?")){
                    itemsList.removeChild(item);
                    removeItem(item);
                    setLocalStorage(todoItems);
-                   alertMessage("Item has been added.","alert-success")
+                   alertMessage("Item has been removed.","alert-success")
                    return todoItems.filter((item)=> item!= itemData);
 
                }
