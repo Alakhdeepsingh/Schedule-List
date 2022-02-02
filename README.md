@@ -14,5 +14,4 @@ Tech Used in this :
 - CSS 3
 - Bootstrap 5
 
-Visit Website : https://alakhdeepsingh.github.io/To-Do-List/    or  
-https://schedulelist.netlify.app/
+Visit Website : https://alakhdeepsingh.github.io/To-Do-List/    or  https://schedulelist.netlify.app/
