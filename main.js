@@ -2,9 +2,9 @@
 //we are selecting the element and taking in different variables
 // The querySelector() method returns the first element that matches a CSS selector.
 const form = document.querySelector("#itemForm");
-// console.log(form);
+console.log(form);
 const inputItem = document.querySelector("#itemInput");
-// console.log(inputItem);
+console.log(inputItem);
 const itemsList = document.querySelector("#itemsList");
 const filters = document.querySelectorAll(".nav-item");
 const alertDiv = document.querySelector("#message")
@@ -74,7 +74,12 @@ const getItemsFilter = function(type) {
 const updateItem = function(currentItemIndex, value) {
     const newItem = todoItems[currentItemIndex];
     newItem.name = value;
+    console.log(todoItems);
+
     todoItems.splice(currentItemIndex, 1, newItem);
+    //1 is telling that we have to replace by 1 element
+    console.log(currentItemIndex);
+    console.log(todoItems);
     setLocalStorage(todoItems);
 };
 
@@ -120,8 +125,9 @@ const handleItem = function(itemData) {
             //editing the pencil square blue
 
             item.querySelector("[data-edit]").addEventListener('click', function(e) {
-                e.preventDefault();
+                e.preventDefault();      
                 inputItem.value = itemData.name;
+                //itemData.name : is the name from where edit event is triggered the name will be added to the placeholder (inputItem.value)
                 document.querySelector("#citem").value = todoItems.indexOf(itemData);
 
             });
@@ -135,7 +141,7 @@ const handleItem = function(itemData) {
                     itemsList.removeChild(item);
                     removeItem(item);
                     setLocalStorage(todoItems);
-                    alertMessage("Item has been deleted.", "alert-success")
+                    alertMessage("Item has been deleted.", "alert-danger")
                     return todoItems.filter((item) => item != itemData);
 
                 }
@@ -167,6 +173,7 @@ const getList = function(todoItems) {
                         <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
                     </span> 
                   </li>`
+                  // attriute : ,eans its description like data edit,data-delete,data-done etc are all attribute
             );
             //handling event with this function
             handleItem(item);
@@ -206,7 +213,7 @@ const getLocalStorage = function() {
 
 const setLocalStorage = function(todoItems) {
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
-                        // key      ,  //value
+                         // key      ,  //value
     //stringify : convert json object to string 
 //object
 //{ 
