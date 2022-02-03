@@ -25,22 +25,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
   <body>
-    
+     
 <div class="colors">
 <div class="container">
     <div class="row">
-        <div class="col mx-auto col-md-7 mt-2 text-center">
-            <div class="alert align-item-center" id="message"></div>
+        <div class="col mx-auto col-md-7 mt-5 text-center">
+          <!-- mx auto is used to horizontally centering fixed-width block level content -->
+          <!-- md means there are 12 columns in the screen and md-7 means that 7 colums will be used and rest will not be used from 12    -->
+          <!-- mt means margin top is used to give space from the top-->
+          <div class="alert" id="message"></div>
             <form id ="itemForm">
                 <h3>TO DO LIST</h3>
                 <div class ="input-group mb-3">
                     <input type="text" class="form-control" id="itemInput" value="" placeholder="Please Enter name..">
-                    <button class="btn btn-outline-primary">ADD ITEM</button>
+                    <button class=" btn btn-outline-primary">ADD ITEM</button>
+                    <!-- btn-outline-primary used to outline the button in blue color -->
                 </div>
             </form>
 
                 <ul class="nav nav-tabs">
-                    <li class="nav-item" data-type="all">
+                    <li class="nav-item" >
                       <a class="nav-link active"  href="#">All</a>
                     </li>
                     <li class="nav-item" data-type="todo">
@@ -48,6 +52,14 @@
                     </li>
                     <li class="nav-item" data-type="done">
                       <a class="nav-link" href="#">Completed</a>
+                      <!-- nav-link active : shows the current page like we have written nav link active in All so whenever we will open the page
+                      All will come first-->
+                      <!-- nav-link is used add links within a navbar. Applying nav-link to a normal link in <a> will make it look like a link in the navigation bar--> 
+                        <!-- in the screen that we are seeing where written All, ToDo, Completed are written in the navigation bar and if we don't use nav links 
+                        then the link will be like in underline form-->
+                      <!-- nav-link -->
+                      <!-- nav item -->
+                      
                     </li>
                   </ul>
 

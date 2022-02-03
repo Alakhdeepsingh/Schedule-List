@@ -2,7 +2,9 @@
 //we are selecting the element and taking in different variables
 // The querySelector() method returns the first element that matches a CSS selector.
 const form = document.querySelector("#itemForm");
+// console.log(form);
 const inputItem = document.querySelector("#itemInput");
+// console.log(inputItem);
 const itemsList = document.querySelector("#itemsList");
 const filters = document.querySelectorAll(".nav-item");
 const alertDiv = document.querySelector("#message")
@@ -80,13 +82,15 @@ const updateItem = function(currentItemIndex, value) {
 
 //handle events on action buttons
 const handleItem = function(itemData) {
-
+// console.log(itemData);
     const items = document.querySelectorAll('.list-group-item');
+    // console.log(items);
     //we are selcting of this class .list-group-item using querySelectorAll
 
     items.forEach((item) => {
         //iterating
         if (item.querySelector('.title').getAttribute('data-time') == itemData.addedAt) {
+            // console.log(item.querySelector('.title'))
             //if it will equal to the time then statement will proceed
 
             //done
@@ -104,7 +108,9 @@ const handleItem = function(itemData) {
                 const iconClass = currentItem.isDone ? "bi-check-circle-fill" : "bi-check-circle";
 
                 //we are changing the child of first element 
+                console.log(this.firstElementChild.classList);
                 this.firstElementChild.classList.replace(currentClass, iconClass);
+                
 
 
                 //so here we are replacing itemIndex by 1 element by currentItem 
@@ -138,9 +144,8 @@ const handleItem = function(itemData) {
         }
     });
 }
+
 //get list of items
-
-
 
 //if we have items in the local storage then we will fetch then list mai list karaiye screen mai
 const getList = function(todoItems) {
@@ -153,13 +158,14 @@ const getList = function(todoItems) {
             itemsList.insertAdjacentHTML(
                 //The insertAdjacentHTML() method inserts a text as HTML, into a specified position.
                 "beforeend",
+                //list mai item end mai aati hai jabh bhi ham new item dalte hai
                 `<li class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="title" data-time="${item.addedAt}">${item.name}</span>
                     <span> 
                         <a href="#" data-done> <i class="bi ${iconClass} green"></i></a>  
                         <a href="#" data-edit><i class="bi bi-pencil-square blue"></i></a>
                         <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
-                    </span>
+                    </span> 
                   </li>`
             );
             //handling event with this function
@@ -188,7 +194,7 @@ const getLocalStorage = function() {
         todoItems = [];
     } else {
         todoItems = JSON.parse(todoStorage);
-        // Use the JavaScript function JSON.parse() to convert text into a JavaScript object
+        // Use the JavaScript function JSON.parse() to convert string or text into a JavaScript object
     }
     // console.log("items",todoItems);
     getList(todoItems);
@@ -200,12 +206,26 @@ const getLocalStorage = function() {
 
 const setLocalStorage = function(todoItems) {
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
+                        // key      ,  //value
+    //stringify : convert json object to string 
+//object
+//{ 
+//    x: 5, 
+//    y: 6 
+//}
+
+//console.log(JSON.stringify({ x: 5, y: 6 }));
+// expected output: "{"x":5,"y":6}"
 
 };
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    //Object.addEventListner(event,handler,capturePhase);
+//event is a string indicating the type of event,handler is the function that should be called when the event occurs.
+//eg: btn.addEventListner("click",show,false);
+
     // The DOMContentLoaded event fires when the initial HTML document
     // has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading. 
     form.addEventListener("submit", (e) => {
@@ -221,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //const currentItemIndex = document.querySelector("#citem").value;
 
             const currentItemIndex = document.querySelector("#citem").value;
-            if (currentItemIndex) {
+            if (currentItemIndex) { 
                 //update
                 updateItem(currentItemIndex, itemName);
                 document.querySelector("#citem").value = "";
