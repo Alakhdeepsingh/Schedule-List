@@ -2,9 +2,9 @@
 //we are selecting the element and taking in different variables
 // The querySelector() method returns the first element that matches a CSS selector.
 const form = document.querySelector("#itemForm");
-console.log(form);
+// console.log(form);
 const inputItem = document.querySelector("#itemInput");
-console.log(inputItem);
+// console.log(inputItem);
 const itemsList = document.querySelector("#itemsList");
 const filters = document.querySelectorAll(".nav-item");
 const alertDiv = document.querySelector("#message")
@@ -21,6 +21,7 @@ const alertMessage = function (message, className) {
         alertDiv.classList.add("hide");
         alertDiv.classList.remove("show");
     }, 3000);
+    //3000 means 3 sec rukta hai scrren mai phir gayabh hoo jatta hai 
     return;
 };
 
@@ -40,8 +41,6 @@ const alertMessage = function (message, className) {
 // };
 
 
-
-
 //deleteitems
 const removeItem = function(item) {
     const removeIndex = todoItems.indexOf(item);
@@ -57,24 +56,30 @@ const getItemsFilter = function(type) {
     switch (type) {
         case "todo":
             filterItems = todoItems.filter((item) => !item.isDone);
+            //Out of 10 people , 4 loggo ne black (true) tshirt pheni hai and 6 loggo ne white(false)
+            //tshirt phena hai tho agar mujjhe white(false) shirt walle logh chaiye tho vahi logh honghe 
+            //jinho ne black(true) shirt nhi pheni hai
             break;
         case "done":
+            //here done is basically completed which is printing in the screen
             filterItems = todoItems.filter((item) => item.isDone);
+            //Out of 10 people , 4 loggo ne black (true) tshirt pheni hai and 6 loggo ne white(false)
+//agar black (true)shirt walle chaiye tho shidha jho black shirt(true) walle hai unko dhundho
             break;
         default:
             filterItems = todoItems;
     }
+    // console.log(todoItems);
+    // console.log(filterItems);
     getList(filterItems);
 };
-
-
 
 
 //update items 
 const updateItem = function(currentItemIndex, value) {
     const newItem = todoItems[currentItemIndex];
     newItem.name = value;
-    console.log(todoItems);
+    //console.log(todoItems);
 
     todoItems.splice(currentItemIndex, 1, newItem);
     //1 is telling that we have to replace by 1 element
@@ -84,13 +89,12 @@ const updateItem = function(currentItemIndex, value) {
 };
 
 
-
 //handle events on action buttons
 const handleItem = function(itemData) {
 // console.log(itemData);
     const items = document.querySelectorAll('.list-group-item');
     // console.log(items);
-    //we are selcting of this class .list-group-item using querySelectorAll
+    //we are selecting of this class .list-group-item using querySelectorAll
 
     items.forEach((item) => {
         //iterating
@@ -116,22 +120,16 @@ const handleItem = function(itemData) {
                 console.log(this.firstElementChild.classList);
                 this.firstElementChild.classList.replace(currentClass, iconClass);
                 
-
-
                 //so here we are replacing itemIndex by 1 element by currentItem 
                 //splice(): Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
             });
-
             //editing the pencil square blue
-
             item.querySelector("[data-edit]").addEventListener('click', function(e) {
                 e.preventDefault();      
                 inputItem.value = itemData.name;
                 //itemData.name : is the name from where edit event is triggered the name will be added to the placeholder (inputItem.value)
                 document.querySelector("#citem").value = todoItems.indexOf(itemData);
-
             });
-
 
             //delete using x-circle red
             item.querySelector("[data-delete]").addEventListener('click', function(e) {
@@ -143,9 +141,7 @@ const handleItem = function(itemData) {
                     setLocalStorage(todoItems);
                     alertMessage("Item has been deleted.", "alert-danger")
                     return todoItems.filter((item) => item != itemData);
-
                 }
-
             });
         }
     });
@@ -164,7 +160,7 @@ const getList = function(todoItems) {
             itemsList.insertAdjacentHTML(
                 //The insertAdjacentHTML() method inserts a text as HTML, into a specified position.
                 "beforeend",
-                //list mai item end mai aati hai jabh bhi ham new item dalte hai
+                //beforeend : list mai item end mai aati hai jabh bhi ham new item dalte hai
                 `<li class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="title" data-time="${item.addedAt}">${item.name}</span>
                     <span> 
@@ -201,7 +197,7 @@ const getLocalStorage = function() {
         todoItems = [];
     } else {
         todoItems = JSON.parse(todoStorage);
-        // Use the JavaScript function JSON.parse() to convert string or text into a JavaScript object
+        // Use the JavaScript function JSON.parse() to convert into JavaScript object from string or text 
     }
     // console.log("items",todoItems);
     getList(todoItems);
@@ -275,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // The trim() method removes whitespace from both sides of a string.
     // The trim() method does not change the original string.
 
-    // filters
+    // filters tabs
     filters.forEach((tab) => {
         tab.addEventListener("click", function(e) {
             e.preventDefault();
@@ -284,8 +280,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 nav.classList.remove("active");
             });
             this.firstElementChild.classList.add("active");
+            //console.log(this.firstElementChild);
             document.querySelector("#filterType").value = tabType;
             getItemsFilter(tabType);
+            
         });
     });
 
