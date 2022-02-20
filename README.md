@@ -1,6 +1,6 @@
 # Schedule-List
 
-To-do-List features are as below:
+Schedule-List features are as below:
  - Adding Item to the todo list 
  - Storing Items in local storage
  - Edit existing items in the list
