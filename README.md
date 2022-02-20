@@ -1,5 +1,4 @@
-# To-Do-List
-To-Do-List using JavaScript
+# Schedule-List
 
 To-do-List features are as below:
  - Adding Item to the todo list 
