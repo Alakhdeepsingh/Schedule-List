@@ -1,6 +1,6 @@
 # Schedule-List
 
-Schedule-List features are as below:
+Schedule-List is basically a To-do-List whose features are as below:
  - Adding Item to the todo list 
  - Storing Items in local storage
  - Edit existing items in the list
